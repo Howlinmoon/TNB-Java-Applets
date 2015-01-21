@@ -2,9 +2,11 @@ import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
-public class StartingPoint extends Applet implements Runnable {
+public class StartingPoint extends Applet implements Runnable, KeyListener {
 	
 	private Image i;
 	private Graphics doubleG;
@@ -15,6 +17,9 @@ public class StartingPoint extends Applet implements Runnable {
 		// this is called only once
 		// set the size of the canvas
 		setSize(800, 600);
+		// refers to the 3 default key listener
+		addKeyListener(this);
+		
 	}
 	
 	@Override
@@ -78,6 +83,38 @@ public class StartingPoint extends Applet implements Runnable {
 	public void paint(Graphics g) {
 		b.paint(g);
 		b2.paint(g);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_LEFT:
+			// left key
+			b.moveLeft();
+			break;
+
+		case KeyEvent.VK_RIGHT:
+			// right key
+			b.moveRight();
+			break;
+		}
+		
+	}
+
+	
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

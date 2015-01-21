@@ -10,18 +10,31 @@ public class Ball {
 	private double dy = 0;
 	private int radius = 20;
 	private double gravity = 15;
-	private double energyloss = .65;
+	private double energyloss = 1.0;
+//	private double energyloss = .65;
 	private double dt = .2;
 	private double xFriction = .9;
 
 	public Ball() {
-		// TODO Auto-generated constructor stub
+		// boring default constructor
 	}
 	
 	public Ball(int i, int j) {
-		// TODO Auto-generated constructor stub
+		// constructor that allow specification of starting co-ords
 		x = i;
 		y = j;
+	}
+	
+	public void moveRight() {
+		if (dx+1 < 20) {
+			dx +=1;
+		}
+	}
+	
+	public void moveLeft() {
+		if (dx-1 > -20) {
+			dx -=1;
+		}
 	}
 
 	public void update(StartingPoint sp) {
