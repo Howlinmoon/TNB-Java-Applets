@@ -6,17 +6,9 @@ import java.awt.Image;
 
 public class StartingPoint extends Applet implements Runnable {
 	
-	int x = 400;
-	int y = 25;
-	double dx = 20;
-	double dy = 0;
-	int radius = 20;
 	private Image i;
 	private Graphics doubleG;
-	double gravity = 15;
-	double energyloss = .65;
-	double dt = .2;
-	double xFriction = .9;
+	Ball b, b2;
 	
 	@Override
 	public void init() {
@@ -27,6 +19,8 @@ public class StartingPoint extends Applet implements Runnable {
 	
 	@Override
 	public void start() {
+		b = new Ball();
+		b2 = new Ball(250,250);
 		// this gets called every time
 		Thread thread = new Thread(this);
 		thread.start();
@@ -38,52 +32,8 @@ public class StartingPoint extends Applet implements Runnable {
 	public void run() {
 		// thread information - the thread runs down here
 		while (true) {
-			// X boundaries
-			if ( x + dx > this.getWidth() - radius - 1) {
-				x = this.getWidth() - radius - 1;
-				dx = -dx;
-			} else if (x + dx < 0 + radius ) {
-					x = 0 + radius;
-					dx = -dx;
-			}
-			x += dx;
-
-//			// Y boundaries (simple - original)
-//			if ( y + dy > this.getHeight() - radius - 1) {
-//				y = this.getHeight() - radius - 1;
-//				dy = -dy;
-//			} else if (y + dy < 0 + radius ) {
-//					y = 0 + radius;
-//					dy = -dy;
-//			}
-//			y += dy;
-			
-			
-			if (y == this.getHeight() - radius - 1) {
-				// ball is exactly at the bottom
-				dx *= xFriction;
-				if (Math.abs(dx) < .8) {
-					dx = 0;
-				}
-			}
-			
-
-			if (y > this.getHeight() - radius - 1) {
-				// at the bottom of the applet
-				y = this.getHeight() - radius - 1;
-				dy *= energyloss;
-				dy = -dy;
-				
-			} else {
-				// velocity formula
-				dy = dy + gravity * dt;
-				// adjust y with gravity;
-				y +=  dy * dt + .5 * gravity * dt * dt;
-				
-			}
-			
-			
-			
+			b.update(this);
+			b2.update(this);
 			// repaint calls the paint method
 			repaint();
 			try {
@@ -126,21 +76,8 @@ public class StartingPoint extends Applet implements Runnable {
 	
 	@Override
 	public void paint(Graphics g) {
-		// Color change depending on the deltas
-		
-		if (dx > 0 && dy > 0) {
-			g.setColor(Color.BLUE);
-		} else if (dx > 0 && dy < 0) {
-			g.setColor(Color.RED);
-		} else if (dx < 0 && dy > 0) {
-			g.setColor(Color.GREEN);
-		} else {
-			g.setColor(Color.ORANGE);
-		}
-		g.fillOval(x-radius, y-radius, radius*2, radius*2);
-		
-		
-
+		b.paint(g);
+		b2.paint(g);
 	}
 
 	
