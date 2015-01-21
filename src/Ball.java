@@ -46,6 +46,10 @@ public class Ball {
 		return dx;
 	}
 	
+	public int getRadius() {
+		return radius;
+	}
+	
 	public void setDx(double dx) {
 		this.dx = dx;
 	}
