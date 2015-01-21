@@ -11,7 +11,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	private Image i;
 	private Graphics doubleG;
 	Ball b, b2;
-	Platform p;
+	Platform p,p2;
 	
 	@Override
 	public void init() {
@@ -28,6 +28,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		b = new Ball();
 		//b2 = new Ball(250,250);
 		p = new Platform();
+		p2 = new Platform(100, 425);
 		// this gets called every time
 		Thread thread = new Thread(this);
 		thread.start();
@@ -42,6 +43,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 			b.update(this);
 			//b2.update(this);
 			p.update(this, b);
+			p2.update(this,  b);
 			// repaint calls the paint method
 			repaint();
 			try {
@@ -87,6 +89,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		b.paint(g);
 		//b2.paint(g);
 		p.paint(g);
+		p2.paint(g);
 	}
 
 	@Override

@@ -16,6 +16,13 @@ public class Platform {
 		height = 40;
 	}
 	
+	public Platform(int x, int y) {
+		this.x = x;
+		this.y = y;
+		width = 120;
+		height = 40;
+		dx = -10;
+	}
 	public void update(StartingPoint sp, Ball b) {
 
 		//check for collision
@@ -31,6 +38,7 @@ public class Platform {
 		if (ballY + radius > y && ballY + radius < y + height) {
 			if (ballX > x && ballX < x + width) {
 				double  newDy = b.getDy() * -1;
+				b.setY(y - radius);
 				b.setDy(newDy);
 			}
 		}
