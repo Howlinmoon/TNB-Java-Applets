@@ -11,7 +11,6 @@ public class Ball {
 	private int radius = 20;
 	private double gravity = 15;
 	private double energyloss = 1.0;
-//	private double energyloss = .65;
 	private double dt = .2;
 	private double xFriction = .9;
 
@@ -24,6 +23,41 @@ public class Ball {
 		x = i;
 		y = j;
 	}
+	
+	// generic getters and setters
+	
+	public int getY() {
+		return y;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public double getDx() {
+		return dx;
+	}
+	
+	public void setDx(double dx) {
+		this.dx = dx;
+	}
+	
+	public double getDy() {
+		return dy;
+	}
+	
+	public void setDy(double dy) {
+		this.dy = dy;
+	}
+	
 	
 	public void moveRight() {
 		if (dx+1 < 20) {
