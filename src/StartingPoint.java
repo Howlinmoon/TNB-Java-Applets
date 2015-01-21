@@ -8,11 +8,14 @@ public class StartingPoint extends Applet implements Runnable {
 	
 	int x = 400;
 	int y = 25;
-	int dx = 4;
-	int dy = 4;
+	double dx = 0;
+	double dy = 0;
 	int radius = 20;
 	private Image i;
 	private Graphics doubleG;
+	double gravity = 15;
+	double energyloss = .65;
+	double dt = .2;
 	
 	@Override
 	public void init() {
@@ -42,19 +45,32 @@ public class StartingPoint extends Applet implements Runnable {
 					x = 0 + radius;
 					dx = -dx;
 			}
-
-			// Y boundaries
-			if ( y + dy > this.getHeight() - radius - 1) {
-				y = this.getHeight() - radius - 1;
-				dy = -dy;
-			} else if (y + dy < 0 + radius ) {
-					y = 0 + radius;
-					dy = -dy;
-			}
-
-			
 			x += dx;
-			y += dy;
+
+//			// Y boundaries (simple - original)
+//			if ( y + dy > this.getHeight() - radius - 1) {
+//				y = this.getHeight() - radius - 1;
+//				dy = -dy;
+//			} else if (y + dy < 0 + radius ) {
+//					y = 0 + radius;
+//					dy = -dy;
+//			}
+//			y += dy;
+
+			if (y > this.getHeight() - radius - 1) {
+				// at the bottom of the applet
+				y = this.getHeight() - radius - 1;
+				dy *= energyloss;
+				dy = -dy;
+				
+			} else {
+				// velocity formula
+				dy = dy + gravity * dt;
+				// adjust y with gravity;
+				y +=  dy * dt + .5 * gravity * dt * dt;
+				
+			}
+			
 			
 			
 			// repaint calls the paint method
