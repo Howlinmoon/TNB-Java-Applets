@@ -8,7 +8,7 @@ public class StartingPoint extends Applet implements Runnable {
 	
 	int x = 400;
 	int y = 25;
-	double dx = 0;
+	double dx = 20;
 	double dy = 0;
 	int radius = 20;
 	private Image i;
@@ -16,6 +16,7 @@ public class StartingPoint extends Applet implements Runnable {
 	double gravity = 15;
 	double energyloss = .65;
 	double dt = .2;
+	double xFriction = .9;
 	
 	@Override
 	public void init() {
@@ -56,6 +57,16 @@ public class StartingPoint extends Applet implements Runnable {
 //					dy = -dy;
 //			}
 //			y += dy;
+			
+			
+			if (y == this.getHeight() - radius - 1) {
+				// ball is exactly at the bottom
+				dx *= xFriction;
+				if (Math.abs(dx) < .8) {
+					dx = 0;
+				}
+			}
+			
 
 			if (y > this.getHeight() - radius - 1) {
 				// at the bottom of the applet
