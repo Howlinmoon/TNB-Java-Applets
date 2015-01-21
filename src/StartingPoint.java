@@ -6,10 +6,10 @@ import java.awt.Image;
 
 public class StartingPoint extends Applet implements Runnable {
 	
-	int x = 0;
-	int y = 0;
-	int dx = 1;
-	int dy = 1;
+	int x = 400;
+	int y = 25;
+	int dx = 4;
+	int dy = 4;
 	int radius = 20;
 	private Image i;
 	private Graphics doubleG;
@@ -34,10 +34,28 @@ public class StartingPoint extends Applet implements Runnable {
 	public void run() {
 		// thread information - the thread runs down here
 		while (true) {
+			// X boundaries
+			if ( x + dx > this.getWidth() - radius - 1) {
+				x = this.getWidth() - radius - 1;
+				dx = -dx;
+			} else if (x + dx < 0 + radius ) {
+					x = 0 + radius;
+					dx = -dx;
+			}
+
+			// Y boundaries
+			if ( y + dy > this.getHeight() - radius - 1) {
+				y = this.getHeight() - radius - 1;
+				dy = -dy;
+			} else if (y + dy < 0 + radius ) {
+					y = 0 + radius;
+					dy = -dy;
+			}
+
+			
 			x += dx;
 			y += dy;
 			
-			// maximum limiting?
 			
 			// repaint calls the paint method
 			repaint();
@@ -81,8 +99,17 @@ public class StartingPoint extends Applet implements Runnable {
 	
 	@Override
 	public void paint(Graphics g) {
+		// Color change depending on the deltas
 		
-		g.setColor(Color.BLUE);
+		if (dx > 0 && dy > 0) {
+			g.setColor(Color.BLUE);
+		} else if (dx > 0 && dy < 0) {
+			g.setColor(Color.RED);
+		} else if (dx < 0 && dy > 0) {
+			g.setColor(Color.GREEN);
+		} else {
+			g.setColor(Color.ORANGE);
+		}
 		g.fillOval(x-radius, y-radius, radius*2, radius*2);
 		
 		
