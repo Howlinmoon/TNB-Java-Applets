@@ -13,6 +13,7 @@ public class Ball {
 	private double energyloss = 1.0;
 	private double dt = .2;
 	private double xFriction = .9;
+	private double gameDy = -75;
 
 	public Ball() {
 		// boring default constructor
@@ -25,6 +26,14 @@ public class Ball {
 	}
 	
 	// generic getters and setters
+	
+	public double getGameDy() {
+		return gameDy;
+	}
+	
+	public void setGameDy(double gameDy) {
+		this.gameDy = gameDy;
+	}
 	
 	public int getY() {
 		return y;
@@ -99,7 +108,8 @@ public class Ball {
 			// at the bottom of the applet
 			y = sp.getHeight() - radius - 1;
 			dy *= energyloss;
-			dy = -dy;
+			//dy = -dy;
+			dy = gameDy;
 			
 		} else {
 			// velocity formula

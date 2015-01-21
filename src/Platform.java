@@ -37,7 +37,8 @@ public class Platform {
 		
 		if (ballY + radius > y && ballY + radius < y + height) {
 			if (ballX > x && ballX < x + width) {
-				double  newDy = b.getDy() * -1;
+//				double  newDy = b.getDy() * -1;
+				double  newDy = b.getGameDy();
 				b.setY(y - radius);
 				b.setDy(newDy);
 			}
