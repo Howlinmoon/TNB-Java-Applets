@@ -30,18 +30,24 @@ public class Item {
 		// TODO Auto-generated method stub
 		int ballX = b.getX();
 		int ballY = b.getY();
-		int radius = b.getRadius();
+		int ballR = b.getRadius();
 		
-		/*
-		if (ballY + radius > y && ballY + radius < y + height) {
-			if (ballX > x && ballX < x + width) {
-//				double  newDy = b.getDy() * -1;
-				double  newDy = b.getGameDy();
-				b.setY(y - radius);
-				b.setDy(newDy);
-			}
+		int aSide = x - ballX;
+		int bSide = y - ballY;
+		int collide = radius + ballR;
+		// c = distance between the centers
+		double c = Math.sqrt( (double) (aSide * aSide) + (double) (bSide * bSide));
+		if (c < collide) {
+			performAction();
+			x = 0;
+			y = 0;
 		}
-		*/
+		
+	}
+
+	private void performAction() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void paint(Graphics g) {
