@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 
 public class StartingPoint extends Applet implements Runnable, KeyListener {
@@ -15,7 +16,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	private Image i;
 	private Graphics doubleG;
 	Ball b, b2;
-	Platform p,p2;
+	Platform p[] = new Platform[7];
 	
 	@Override
 	public void init() {
@@ -31,9 +32,11 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	public void start() {
 		b = new Ball();
 		//b2 = new Ball(250,250);
-		p = new Platform();
-		p2 = new Platform(100, 425);
-		//p2 = new Platform(100, 550);
+		for (int i = 0; i < p.length ; i++) {
+			Random r = new Random();
+			p[i] = new Platform(getWidth() + 200 * i, getHeight() - 40 - r.nextInt(400));
+		}
+
 		// this gets called every time
 		Thread thread = new Thread(this);
 		thread.start();
@@ -46,9 +49,9 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		// thread information - the thread runs down here
 		while (true) {
 			b.update(this);
-			//b2.update(this);
-			p.update(this, b);
-			p2.update(this,  b);
+			for (int i = 0; i < p.length; i++) {
+				p[i].update(this, b);
+			}
 			// repaint calls the paint method
 			repaint();
 			try {
@@ -92,9 +95,9 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	@Override
 	public void paint(Graphics g) {
 		b.paint(g);
-		//b2.paint(g);
-		p.paint(g);
-		p2.paint(g);
+		for (int i = 0; i < p.length; i++) {
+			p[i].paint(g);
+		}
 	}
 
 	@Override
