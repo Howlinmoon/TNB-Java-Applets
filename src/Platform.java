@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 
 public class Platform {
@@ -8,8 +9,7 @@ public class Platform {
 	int x, y, width, height;
 	
 	public Platform() {
-		// TODO Auto-generated constructor stub
-		dx = -10;
+		dx = -1;
 		x = 300;
 		y = 300;
 		width = 120;
@@ -21,12 +21,16 @@ public class Platform {
 		this.y = y;
 		width = 120;
 		height = 40;
-		dx = -10;
+		dx = -1;
 	}
 	public void update(StartingPoint sp, Ball b) {
-
+		x += dx;
 		//check for collision
 		checkForCollision(b);
+		if (x < 0 - width) {
+			Random r = new Random();
+			x = sp.getWidth() + r.nextInt(300);
+		}
 	}
 	
 	private void checkForCollision(Ball b) {

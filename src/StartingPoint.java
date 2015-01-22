@@ -8,6 +8,10 @@ import java.awt.event.KeyListener;
 
 public class StartingPoint extends Applet implements Runnable, KeyListener {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Image i;
 	private Graphics doubleG;
 	Ball b, b2;
@@ -29,6 +33,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		//b2 = new Ball(250,250);
 		p = new Platform();
 		p2 = new Platform(100, 425);
+		//p2 = new Platform(100, 550);
 		// this gets called every time
 		Thread thread = new Thread(this);
 		thread.start();
@@ -96,13 +101,15 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		switch(e.getKeyCode()) {
-		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_A:
 			// left key
+			System.out.println("A key detected");
 			b.moveLeft();
 			break;
 
-		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_D:
 			// right key
+			System.out.println("D key detected");
 			b.moveRight();
 			break;
 		}
