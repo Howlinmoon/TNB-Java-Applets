@@ -39,8 +39,8 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		}
 
 		for (int i = 0; i < item.length ; i++) {
-			Random r = new Random();
-			item[i] = new Item(getWidth() + 2000 * i);
+			//Random r = new Random();
+			item[i] = new GravityUp(getWidth() + 2000 * i);
 		}
 
 		

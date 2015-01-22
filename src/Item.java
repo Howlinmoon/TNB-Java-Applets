@@ -45,7 +45,7 @@ public class Item {
 	}
 
 	public void paint(Graphics g) {
-		g.setColor(Color.GREEN);
+//		g.setColor(Color.GREEN);
 		g.fillOval(x-radius, y-radius, radius*2, radius*2);
 
 	}
