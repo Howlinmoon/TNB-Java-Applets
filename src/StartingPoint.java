@@ -55,11 +55,32 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	public void run() {
 		// thread information - the thread runs down here
 		while (true) {
+			
+			Random r = new Random();
 		
 			for (int i = 0; i < item.length; i ++) {
 				if (item[i].getY() == this.getHeight() + 100) {
 					item[i] = null;
-					item[i] = new GravityUp(getWidth());
+					switch (r.nextInt(4) ) {
+					
+					case 0:
+						item[i] = new GravityUp(getWidth() + 10 * r.nextInt(500));
+						break;
+					
+					case 1:
+						item[i] = new GravityDown(getWidth()+ 10 * r.nextInt(500));
+						break;
+					
+					case 2:
+						item[i] = new AgilityUp(getWidth()+ 10 * r.nextInt(500));
+						break;
+
+					case 3:
+						item[i] = new AgilityDown(getWidth()+ 10 * r.nextInt(500));
+						break;
+						
+						
+					}
 				}
 			}
 		
