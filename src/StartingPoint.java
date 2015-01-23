@@ -1,5 +1,6 @@
 import java.applet.Applet;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
@@ -18,6 +19,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	Ball b, b2;
 	Platform p[] = new Platform[7];
 	Item item[] = new Item[3];
+	int score = 0;
 	
 	@Override
 	public void init() {
@@ -32,6 +34,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	@Override
 	public void start() {
 		b = new Ball();
+		score = 0;
 		//b2 = new Ball(250,250);
 		for (int i = 0; i < p.length ; i++) {
 			Random r = new Random();
@@ -55,6 +58,8 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	public void run() {
 		// thread information - the thread runs down here
 		while (true) {
+			
+			score++;
 			
 			Random r = new Random();
 		
@@ -144,6 +149,14 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		for (int i = 0; i < item.length; i++) {
 			item[i].paint(g);
 		}
+		b.paint(g);
+		String s = Integer.toString(score);
+		Font font = new Font("Arial", Font.BOLD, 32);
+		g.setFont(font);
+		g.setColor(Color.BLACK);
+		g.drawString(s, getWidth() - 150+2, 50+2);
+		g.setColor(new Color(198, 226, 255));
+		g.drawString(s, getWidth() - 150, 50);
 
 	}
 
