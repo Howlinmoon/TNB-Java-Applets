@@ -14,6 +14,24 @@ public class Ball {
 	private double dt = .2;
 	private double xFriction = .9;
 	private double gameDy = -75;
+	private int agility = 3;
+	private int maxSpeed = 20;
+
+	public int getAgility() {
+		return agility;
+	}
+
+	public void setAgility(int agility) {
+		this.agility = agility;
+	}
+
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
 
 	public Ball() {
 		// boring default constructor
@@ -80,14 +98,14 @@ public class Ball {
 	}
 	
 	public void moveRight() {
-		if (dx+1 < 20) {
-			dx +=1;
+		if (dx+agility < maxSpeed) {
+			dx +=agility;
 		}
 	}
 	
 	public void moveLeft() {
-		if (dx-1 > -20) {
-			dx -=1;
+		if (dx-agility > -maxSpeed) {
+			dx -= agility ;
 		}
 	}
 
