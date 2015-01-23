@@ -95,7 +95,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 			Random r = new Random();
 		
 			for (int i = 0; i < item.length; i ++) {
-				if (item[i].getY() == this.getHeight() + 100) {
+				if (item[i].isCreateNew()) {
 					item[i] = null;
 					switch (r.nextInt(5) ) {
 					
@@ -118,9 +118,9 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 					case 4:
 						item[i] = new ScorePlus(getWidth() + 10 * r.nextInt(500), this);
 						break;
-						
-						
 					}
+					
+					item[i].setCreateNew(false);
 				}
 			}
 		

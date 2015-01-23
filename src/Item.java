@@ -7,7 +7,16 @@ public class Item {
 		
 	private int x, y, dx, radius;
 	private StartingPoint sp;
+	private boolean createNew = false;
 	
+	public boolean isCreateNew() {
+		return createNew;
+	}
+
+	public void setCreateNew(boolean createNew) {
+		this.createNew = createNew;
+	}
+
 	public Item(int x) {
 		// TODO Auto-generated constructor stub
 		this.x = x;
@@ -23,8 +32,7 @@ public class Item {
 		//check for collision
 		checkForCollision(b);
 		if (x < 0 - radius) {
-			Random r = new Random();
-			x = sp.getWidth() + 2000 + r.nextInt(300);
+			createNew = true;
 		}
 	}
 	
@@ -40,8 +48,7 @@ public class Item {
 		double c = Math.sqrt( (double) (aSide * aSide) + (double) (bSide * bSide));
 		if (c < collide) {
 			performAction(b);
-			x = 0;
-			y = sp.getHeight() + 100;
+			createNew = true;
 		}
 		
 	}
