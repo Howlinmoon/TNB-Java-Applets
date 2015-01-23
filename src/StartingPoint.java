@@ -5,7 +5,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.URL;
 import java.util.Random;
+
+import org.omg.CORBA.ExceptionList;
 
 
 public class StartingPoint extends Applet implements Runnable, KeyListener {
@@ -20,6 +23,10 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	Platform p[] = new Platform[7];
 	Item item[] = new Item[3];
 	private int score = 0;
+	double cityX = 0;
+	double cityDx = .3;
+	URL url;
+	Image city;
 	
 	
 	
@@ -38,7 +45,12 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		setSize(800, 600);
 		// refers to the 3 default key listener
 		addKeyListener(this);
-		
+		try {
+			url = getDocumentBase();
+		} catch (Exception e) {
+			// handle it here
+		}
+		city = getImage(url, "images/skyline.png");
 	}
 	
 	@Override
@@ -176,7 +188,11 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	
 	@Override
 	public void paint(Graphics g) {
-		b.paint(g);
+
+		g.setColor(new Color(15,77,147));
+		g.fillRect(0, 0, getWidth(), getHeight());
+		g.drawImage(city, (int)cityX, 0, this);
+		
 		for (int i = 0; i < p.length; i++) {
 			p[i].paint(g);
 		}
