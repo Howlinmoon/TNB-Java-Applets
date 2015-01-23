@@ -8,6 +8,11 @@ public class GravityUp extends Item  {
 		super(x);
 		// TODO Auto-generated constructor stub
 	}
+
+	@Override
+	public void performAction(Ball b) {
+		b.setGravity(b.getGravity() + 3);
+	}
 	
 	@Override
 	public void paint(Graphics g) {

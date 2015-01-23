@@ -6,6 +6,7 @@ import java.util.Random;
 public class Item {
 		
 	private int x, y, dx, radius;
+	private StartingPoint sp;
 	
 	public Item(int x) {
 		// TODO Auto-generated constructor stub
@@ -18,6 +19,7 @@ public class Item {
 		
 	public void update(StartingPoint sp, Ball b) {
 		x += dx;
+		this.sp = sp;
 		//check for collision
 		checkForCollision(b);
 		if (x < 0 - radius) {
@@ -27,7 +29,6 @@ public class Item {
 	}
 	
 	private void checkForCollision(Ball b) {
-		// TODO Auto-generated method stub
 		int ballX = b.getX();
 		int ballY = b.getY();
 		int ballR = b.getRadius();
@@ -38,14 +39,14 @@ public class Item {
 		// c = distance between the centers
 		double c = Math.sqrt( (double) (aSide * aSide) + (double) (bSide * bSide));
 		if (c < collide) {
-			performAction();
+			performAction(b);
 			x = 0;
-			y = 0;
+			y = sp.getHeight() + 100;
 		}
 		
 	}
 
-	private void performAction() {
+	public void performAction(Ball b) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -56,6 +57,14 @@ public class Item {
 
 	}
 
+	// random getters and setters
+	public int getY() {
+		return y;
+	}
+	
+	public void setY(int y) {
+		this.y = y;
+	}
 	
 	
 }

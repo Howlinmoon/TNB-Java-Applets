@@ -71,6 +71,13 @@ public class Ball {
 		this.dy = dy;
 	}
 	
+	public void setGravity(double gravity) {
+		this.gravity = gravity;
+	}
+	
+	public double getGravity() {
+		return gravity;
+	}
 	
 	public void moveRight() {
 		if (dx+1 < 20) {
