@@ -102,6 +102,13 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		// thread information - the thread runs down here
 		while (true) {
 			
+			if (cityX > getWidth() * -1) {
+				cityX -= cityDx;
+			} else {
+				cityX = 0;
+			}
+			
+			
 			score++;
 			
 			Random r = new Random();
@@ -189,9 +196,11 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	@Override
 	public void paint(Graphics g) {
 
+		// Draw the city scape background
 		g.setColor(new Color(15,77,147));
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.drawImage(city, (int)cityX, 0, this);
+		g.drawImage(city, (int)cityX + getWidth(), 0, this);
 		
 		for (int i = 0; i < p.length; i++) {
 			p[i].paint(g);
