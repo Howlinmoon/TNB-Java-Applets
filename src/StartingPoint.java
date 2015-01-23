@@ -19,8 +19,18 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	Ball b, b2;
 	Platform p[] = new Platform[7];
 	Item item[] = new Item[3];
-	int score = 0;
+	private int score = 0;
 	
+	
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
 	@Override
 	public void init() {
 		// this is called only once
@@ -35,15 +45,36 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	public void start() {
 		b = new Ball();
 		score = 0;
-		//b2 = new Ball(250,250);
+
 		for (int i = 0; i < p.length ; i++) {
 			Random r = new Random();
 			p[i] = new Platform(getWidth() + 200 * i, getHeight() - 40 - r.nextInt(400));
 		}
 
 		for (int i = 0; i < item.length ; i++) {
-			//Random r = new Random();
-			item[i] = new GravityUp(getWidth() + 2000 * i);
+			Random r = new Random();
+			switch (r.nextInt(5) ) {
+			
+			case 0:
+				item[i] = new GravityUp(getWidth() + 2000 * i);
+				break;
+			
+			case 1:
+				item[i] = new GravityDown(getWidth() + 2000 * i);
+				break;
+			
+			case 2:
+				item[i] = new AgilityUp(getWidth() + 2000 * i);
+				break;
+
+			case 3:
+				item[i] = new AgilityDown(getWidth() + 2000 * i);
+				break;
+				
+			case 4:
+				item[i] = new ScorePlus(getWidth() + 2000 * i, this);
+				break;
+			}
 		}
 
 		
@@ -66,7 +97,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 			for (int i = 0; i < item.length; i ++) {
 				if (item[i].getY() == this.getHeight() + 100) {
 					item[i] = null;
-					switch (r.nextInt(4) ) {
+					switch (r.nextInt(5) ) {
 					
 					case 0:
 						item[i] = new GravityUp(getWidth() + 10 * r.nextInt(500));
@@ -82,6 +113,10 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 
 					case 3:
 						item[i] = new AgilityDown(getWidth()+ 10 * r.nextInt(500));
+						break;
+						
+					case 4:
+						item[i] = new ScorePlus(getWidth() + 10 * r.nextInt(500), this);
 						break;
 						
 						
