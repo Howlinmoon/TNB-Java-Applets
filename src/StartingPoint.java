@@ -112,6 +112,19 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 		// thread information - the thread runs down here
 		while (true) {
 			
+			
+			for (int i = 0; i < p.length ; i++) {
+				int testx = p[i].getX();
+				Random r = new Random();
+				if (testx < 0 - p[i].getWidth()) {
+					int fakei = i;
+					if (i == 0) {
+						fakei = p.length;
+					}
+					p[i].setX(p[fakei-1].getX() + p[i].getWidth() + Pictures.level* r.nextInt(25));
+				}
+			}
+			
 			gameOver = b.getGameOver();
 			
 			
@@ -316,8 +329,6 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 		if (mouseIn) {
 			// Reset the game back to defaults
 			// destroy the old objects - and create new ones
-			Platform p[] = new Platform[7];
-			Item item[] = new Item[3];
 			score = 0;
 			cityX = 0;
 			cityDx = .3;

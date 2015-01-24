@@ -23,6 +23,26 @@ public class Platform {
 	}
 	
 	
+	public int getX() {
+		return x;
+	}
+
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+
+	public int getWidth() {
+		return width;
+	}
+
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+
 	public void update(StartingPoint sp, Ball b) {
 		int tester = (int) (frame + .1);
 		if (tester < 3) {
@@ -36,7 +56,7 @@ public class Platform {
 		if (x < 0 - width) {
 			Random r = new Random();
 			y = sp.getHeight() - 40 - r.nextInt(400);
-			x = sp.getWidth() + r.nextInt(300);
+			//x = sp.getWidth() + r.nextInt(300);
 		}
 	}
 	
