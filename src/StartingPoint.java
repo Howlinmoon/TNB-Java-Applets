@@ -297,14 +297,16 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		//g.drawRect(297,  305, 200,  40);
-		if (e.getX() > 296 && e.getX() < 496) {
-			if (e.getY() > 304 && e.getY() < 344) {
-				mouseIn = true;
+		if (gameOver) {
+			if (e.getX() > 296 && e.getX() < 496) {
+				if (e.getY() > 304 && e.getY() < 344) {
+					mouseIn = true;
+				} else {
+					mouseIn = false;
+				}
 			} else {
 				mouseIn = false;
 			}
-		} else {
-			mouseIn = false;
 		}
 	}
 
@@ -327,7 +329,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 			// create a new
 			b = new Ball();
 			start();
-
+			mouseIn = false;
 		}
 		
 	}
