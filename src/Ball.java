@@ -16,6 +16,7 @@ public class Ball {
 	private double gameDy = -75;
 	private int agility = 3;
 	private int maxSpeed = 20;
+	private boolean game_over = false;
 
 	public int getAgility() {
 		return agility;
@@ -129,12 +130,13 @@ public class Ball {
 		}
 		
 
-		if (y > sp.getHeight() - radius - 1) {
-			// at the bottom of the applet
-			y = sp.getHeight() - radius - 1;
-			dy *= energyloss;
-			//dy = -dy;
-			dy = gameDy;
+		if (y - 200 > sp.getHeight() - radius - 1) {
+			game_over = true;
+//			// at the bottom of the applet
+//			y = sp.getHeight() - radius - 1;
+//			dy *= energyloss;
+//			//dy = -dy;
+//			dy = gameDy;
 			
 		} else {
 			// velocity formula
@@ -159,8 +161,17 @@ public class Ball {
 			g.setColor(Color.ORANGE);
 		}
 		g.fillOval(x-radius, y-radius, radius*2, radius*2);
+		if (game_over) {
+			g.setColor(Color.WHITE);
+			g.drawString("GAME OVER", 300, 300);
+		}
 		
 
+	}
+
+	public boolean getGameOver() {
+		// TODO Auto-generated method stub
+		return game_over;
 	}
 	
 }

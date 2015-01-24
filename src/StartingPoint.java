@@ -25,6 +25,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	URL url;
 	Image city;
 	int levelcheck = 0;
+	boolean gameOver = false;
 	
 	
 	
@@ -102,6 +103,9 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	public void run() {
 		// thread information - the thread runs down here
 		while (true) {
+			
+			gameOver = b.getGameOver();
+			
 			
 			if (levelcheck > 500) {
 				Pictures.level++;
