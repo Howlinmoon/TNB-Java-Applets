@@ -5,10 +5,12 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.net.URL;
 import java.util.Random;
 
-public class StartingPoint extends Applet implements Runnable, KeyListener {
+public class StartingPoint extends Applet implements Runnable, KeyListener, MouseMotionListener {
 	
 	/**
 	 * 
@@ -26,6 +28,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	Image city;
 	int levelcheck = 0;
 	boolean gameOver = false;
+	boolean mouseIn = false;
 	
 	
 	
@@ -44,6 +47,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		setSize(800, 600);
 		// refers to the 3 default key listener
 		addKeyListener(this);
+		addMouseMotionListener(this);
 		try {
 			url = getDocumentBase();
 		} catch (Exception e) {
@@ -103,7 +107,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	@Override
 	public void run() {
 		// thread information - the thread runs down here
-		while (! gameOver) {
+		while (true) {
 			
 			gameOver = b.getGameOver();
 			
@@ -230,6 +234,19 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 		g.drawString(s, getWidth() - 150+2, 50+2);
 		g.setColor(new Color(198, 226, 255));
 		g.drawString(s, getWidth() - 150, 50);
+		if (gameOver) {
+			g.setColor(Color.WHITE);
+			g.drawString("GAME OVER", 300, 300);
+			// display the bounding box for the mouse movement detection
+			//g.drawRect(297,  305, 200,  40);
+			if (mouseIn) {
+				g.setColor(Color.RED);
+				g.drawString("Play Again?", 305, 340);
+			} else {
+				g.setColor(Color.WHITE);
+				g.drawString("Play Again?", 305, 340);
+			}
+		}
 
 	}
 
@@ -265,6 +282,27 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		//g.drawRect(297,  305, 200,  40);
+		if (e.getX() > 296 && e.getX() < 496) {
+			if (e.getY() > 304 && e.getY() < 344) {
+				mouseIn = true;
+			} else {
+				mouseIn = false;
+			}
+		} else {
+			mouseIn = false;
+		}
 	}
 
 	

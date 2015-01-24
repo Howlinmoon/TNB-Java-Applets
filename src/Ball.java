@@ -161,10 +161,6 @@ public class Ball {
 			g.setColor(Color.ORANGE);
 		}
 		g.fillOval(x-radius, y-radius, radius*2, radius*2);
-		if (game_over) {
-			g.setColor(Color.WHITE);
-			g.drawString("GAME OVER", 300, 300);
-		}
 		
 
 	}
