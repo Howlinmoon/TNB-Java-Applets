@@ -15,8 +15,8 @@ public class Platform {
 	public Platform(int x, int y) {
 		this.x = x;
 		this.y = y;
-		width = 120;
-		height = 40;
+		width = 167;
+		height = 55;
 		dx = -1;
 		plat = Pictures.platform;
 	}
@@ -54,8 +54,9 @@ public class Platform {
 		g.setColor(Color.BLUE);
 		g.fillRect(x, y, width, height);
 		g.drawImage(plat, x, y, Pictures.sp);
+		g.drawImage(plat, x, y, x + width, y + height, 0, 0, 167, 55, Pictures.sp);
 	}
 
-	
+	// 167x55
 	
 }
