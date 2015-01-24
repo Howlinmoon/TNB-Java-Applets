@@ -11,6 +11,7 @@ public class Platform {
 	int x, y, width, height;
 	Image plat;
 	URL url;
+	float frame = 0;
 	
 	public Platform(int x, int y) {
 		this.x = x;
@@ -23,6 +24,12 @@ public class Platform {
 	
 	
 	public void update(StartingPoint sp, Ball b) {
+		int tester = (int) (frame + .1);
+		if (tester < 3) {
+			frame +=.1;
+		} else {
+			frame = 0;
+		}
 		x += dx;
 		//check for collision
 		checkForCollision(b);
@@ -51,10 +58,7 @@ public class Platform {
 	}
 
 	public void paint(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(x, y, width, height);
-		g.drawImage(plat, x, y, Pictures.sp);
-		g.drawImage(plat, x, y, x + width, y + height, 0, 0, 167, 55, Pictures.sp);
+		g.drawImage(plat, x, y, x + width, y + height, 0, 55*(int)frame, 167, 55*(int)frame + 55, Pictures.sp);
 	}
 
 	// 167x55
