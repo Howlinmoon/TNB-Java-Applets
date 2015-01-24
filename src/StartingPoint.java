@@ -48,7 +48,9 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 			// handle it here
 		}
 		city = getImage(url, "images/skyline.png");
-		Pictures p = new Pictures(this);
+		new Pictures(this);
+		Pictures.wind.play();
+		Pictures.music.loop();
 	}
 	
 	@Override
