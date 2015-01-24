@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.net.URL;
 import java.util.Random;
 
 
@@ -7,14 +9,8 @@ public class Platform {
 
 	int dx;
 	int x, y, width, height;
-	
-	public Platform() {
-		dx = -1;
-		x = 300;
-		y = 300;
-		width = 120;
-		height = 40;
-	}
+	Image plat;
+	URL url;
 	
 	public Platform(int x, int y) {
 		this.x = x;
@@ -22,7 +18,10 @@ public class Platform {
 		width = 120;
 		height = 40;
 		dx = -1;
+		plat = Pictures.platform;
 	}
+	
+	
 	public void update(StartingPoint sp, Ball b) {
 		x += dx;
 		//check for collision
@@ -53,9 +52,8 @@ public class Platform {
 
 	public void paint(Graphics g) {
 		g.setColor(Color.BLUE);
-//		g.drawRect(x, y, width, height);
 		g.fillRect(x, y, width, height);
-
+		g.drawImage(plat, x, y, Pictures.sp);
 	}
 
 	

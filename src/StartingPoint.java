@@ -8,9 +8,6 @@ import java.awt.event.KeyListener;
 import java.net.URL;
 import java.util.Random;
 
-import org.omg.CORBA.ExceptionList;
-
-
 public class StartingPoint extends Applet implements Runnable, KeyListener {
 	
 	/**
@@ -51,6 +48,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 			// handle it here
 		}
 		city = getImage(url, "images/skyline.png");
+		Pictures p = new Pictures(this);
 	}
 	
 	@Override
