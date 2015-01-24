@@ -62,7 +62,8 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 
 		for (int i = 0; i < p.length ; i++) {
 			Random r = new Random();
-			p[i] = new Platform(getWidth() + 200 * i, getHeight() - 40 - r.nextInt(400));
+//			p[i] = new Platform(getWidth() + 200 * i, getHeight() - 40 - r.nextInt(400));
+			p[i] = new Platform(i * 167, 300);
 		}
 
 		for (int i = 0; i < item.length ; i++) {
@@ -102,7 +103,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	@Override
 	public void run() {
 		// thread information - the thread runs down here
-		while (true) {
+		while (! gameOver) {
 			
 			gameOver = b.getGameOver();
 			
@@ -119,8 +120,9 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 				cityX = 0;
 			}
 			
-			
-			score++;
+			if (! gameOver) {
+				score++;
+			}
 			
 			Random r = new Random();
 		
