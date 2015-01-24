@@ -6,11 +6,12 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.net.URL;
 import java.util.Random;
 
-public class StartingPoint extends Applet implements Runnable, KeyListener, MouseMotionListener {
+public class StartingPoint extends Applet implements Runnable, KeyListener, MouseMotionListener, MouseListener {
 	
 	/**
 	 * 
@@ -29,7 +30,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 	int levelcheck = 0;
 	boolean gameOver = false;
 	boolean mouseIn = false;
-	
+	Thread thread = null;
 	
 	
 	public int getScore() {
@@ -48,6 +49,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 		// refers to the 3 default key listener
 		addKeyListener(this);
 		addMouseMotionListener(this);
+		addMouseListener(this);
 		try {
 			url = getDocumentBase();
 		} catch (Exception e) {
@@ -62,10 +64,11 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 	@Override
 	public void start() {
 		b = new Ball();
+		b.setAgility(3);
 		score = 0;
 
 		for (int i = 0; i < p.length ; i++) {
-			Random r = new Random();
+//			Random r = new Random();
 //			p[i] = new Platform(getWidth() + 200 * i, getHeight() - 40 - r.nextInt(400));
 			p[i] = new Platform(i * 167, 300);
 		}
@@ -98,9 +101,9 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 
 		
 		// this gets called every time
+		thread = null;
 		Thread thread = new Thread(this);
 		thread.start();
-		
 
 	}
 	
@@ -303,6 +306,54 @@ public class StartingPoint extends Applet implements Runnable, KeyListener, Mous
 		} else {
 			mouseIn = false;
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (mouseIn) {
+			// Reset the game back to defaults
+			// destroy the old objects - and create new ones
+			Platform p[] = new Platform[7];
+			Item item[] = new Item[3];
+			score = 0;
+			cityX = 0;
+			cityDx = .3;
+			levelcheck = 0;
+			Pictures.level = 1;
+
+			// destroy the old ball
+			b = null;
+			// create a new
+			b = new Ball();
+			start();
+
+		}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

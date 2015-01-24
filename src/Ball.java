@@ -10,7 +10,6 @@ public class Ball {
 	private double dy = 0;
 	private int radius = 20;
 	private double gravity = 15;
-	private double energyloss = 1.0;
 	private double dt = .2;
 	private double xFriction = .9;
 	private double gameDy = -75;
