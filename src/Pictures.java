@@ -8,7 +8,7 @@ public class Pictures {
 	URL url;
 	static StartingPoint sp;
 	static AudioClip music, wind, bounce;
-	
+	static int level = 1;
 	
 	public Pictures(StartingPoint sp) {
 		// TODO Auto-generated constructor stub

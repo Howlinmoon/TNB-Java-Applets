@@ -30,7 +30,7 @@ public class Platform {
 		} else {
 			frame = 0;
 		}
-		x += dx;
+		x -= Pictures.level;
 		//check for collision
 		checkForCollision(b);
 		if (x < 0 - width) {

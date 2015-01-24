@@ -24,6 +24,7 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	double cityDx = .3;
 	URL url;
 	Image city;
+	int levelcheck = 0;
 	
 	
 	
@@ -101,6 +102,12 @@ public class StartingPoint extends Applet implements Runnable, KeyListener {
 	public void run() {
 		// thread information - the thread runs down here
 		while (true) {
+			
+			if (levelcheck > 500) {
+				Pictures.level++;
+				levelcheck = 0;
+			}
+			levelcheck++;
 			
 			if (cityX > getWidth() * -1) {
 				cityX -= cityDx;
